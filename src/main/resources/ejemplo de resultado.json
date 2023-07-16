@@ -1,0 +1,69 @@
+{
+    "idSeguro": 1,
+    "empresa": "Seguro A",
+    "fechaAlta": "2021-12-31T23:00:00.000+00:00",
+    "fechaBaja": "2022-12-31T23:00:00.000+00:00",
+    "listaVehiculos": [
+        {
+            "idVehiculo": 2,
+            "marca": "Honda",
+            "color": "Azul"
+        },
+        {
+            "idVehiculo": 1,
+            "marca": "Toyota",
+            "color": "Rojo"
+        }
+    ],
+    "listaUsuarios": [
+        {
+            "idUsuari": 1,
+            "nombre": "Gordon",
+            "apellido": "Freeman",
+            "dni": "12345678A",
+            "listaContacto": [
+                {
+                    "idContacto": 2,
+                    "numTelefono": 987654321,
+                    "listaTipoContacto": [
+                        {
+                            "tipoContacto": 4,
+                            "descripcion": "Satelite"
+                        },
+                        {
+                            "tipoContacto": 3,
+                            "descripcion": "Fijo"
+                        }
+                    ]
+                },
+                {
+                    "idContacto": 1,
+                    "numTelefono": 123456789,
+                    "listaTipoContacto": [
+                        {
+                            "tipoContacto": 1,
+                            "descripcion": "Teléfono"
+                        },
+                        {
+                            "tipoContacto": 2,
+                            "descripcion": "Movil"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "idUsuari": 2,
+            "nombre": "Alyx",
+            "apellido": "Vance",
+            "dni": "87654321B",
+            "listaContacto": [
+                {
+                    "idContacto": 3,
+                    "numTelefono": 555555555,
+                    "listaTipoContacto": []
+                }
+            ]
+        }
+    ]
+}

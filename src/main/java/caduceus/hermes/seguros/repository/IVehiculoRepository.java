@@ -3,8 +3,6 @@
  */
 package caduceus.hermes.seguros.repository;
 
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import caduceus.hermes.seguros.model.entity.VehiculoTb;
@@ -16,6 +14,7 @@ import caduceus.hermes.seguros.model.entity.VehiculoTb;
  */
 public interface IVehiculoRepository extends JpaRepository<VehiculoTb, Integer>{
 
-	@EntityGraph(value = "vehiculo-graph", type = EntityGraphType.LOAD)
+	/* Sobra completamente esta linea. La importante esta en ISeguroRepository */
+	//@EntityGraph(value = "vehiculo-graph", type = EntityGraphType.LOAD)
 	public VehiculoTb findByIdVehiculo(int idVehiculo);
 }
