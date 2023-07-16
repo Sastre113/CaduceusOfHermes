@@ -3,13 +3,16 @@
  */
 package caduceus.hermes.seguros.model.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +23,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Usuariotb")
+@NamedEntityGraph(
+		name = "usuario-graph",
+		attributeNodes = {
+				@NamedAttributeNode(value = "contactos", subgraph = "contacto-graph")
+		}/*,
+		subgraphs = {
+				@NamedSubgraph(name = "contacto-graph", attributeNodes = { @NamedAttributeNode(value = "usuario") })
+		}*/
+)
 public class UsuarioTb {
 
 	@Id
@@ -37,7 +49,7 @@ public class UsuarioTb {
 	private SeguroTb seguro;
 	
 	@OneToMany(mappedBy = "usuario")
-	private List<ContactoTb> contactos;
+	private Set<ContactoTb> contactos;
 
 	public int getIdUsuario() {
 		return idUsuario;
@@ -79,11 +91,11 @@ public class UsuarioTb {
 		this.seguro = seguro;
 	}
 
-	public List<ContactoTb> getContactos() {
+	public Set<ContactoTb> getContactos() {
 		return contactos;
 	}
 
-	public void setContactos(List<ContactoTb> contactos) {
+	public void setContactos(Set<ContactoTb> contactos) {
 		this.contactos = contactos;
 	}	
 }

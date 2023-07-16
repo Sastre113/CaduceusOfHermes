@@ -5,6 +5,7 @@ package caduceus.hermes.seguros.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class SeguroService {
 	private ISeguroRepository seguroRepository;
 
 	public SeguroDTO obtenerSeguroPorId(int idSeguro) {
-		SeguroTb seguro = this.seguroRepository.findById(idSeguro).orElseThrow();
+		SeguroTb seguro = this.seguroRepository.findByIdSeguro(idSeguro);
 		return this.mapSeguroTb(seguro);
 	}
 
@@ -48,7 +49,7 @@ public class SeguroService {
 		return seguroDTO;
 	}
 
-	private List<VehiculoDTO> mapListaVehiculoDTO(List<VehiculoTb> vehiculos) {
+	private List<VehiculoDTO> mapListaVehiculoDTO(Set<VehiculoTb> vehiculos) {
 		List<VehiculoDTO> listaVehiculoDTO = new ArrayList<>();
 		
 		if(vehiculos != null && !vehiculos.isEmpty())
@@ -67,7 +68,7 @@ public class SeguroService {
 		return vehiculoDTO;
 	}
 
-	private List<UsuarioDTO> mapListaUsuarioDTO(List<UsuarioTb> usuarios) {
+	private List<UsuarioDTO> mapListaUsuarioDTO(Set<UsuarioTb> usuarios) {
 		List<UsuarioDTO> listaUsuarioDTO = new ArrayList<>();
 		
 		if(usuarios != null && !usuarios.isEmpty())
@@ -88,7 +89,7 @@ public class SeguroService {
 		return usuarioDTO;
 	}
 
-	private List<ContactoDTO> mapListaContacto(List<ContactoTb> contactos) {
+	private List<ContactoDTO> mapListaContacto(Set<ContactoTb> contactos) {
 		List<ContactoDTO> listaContactoDTO = new ArrayList<>();
 		
 		if(contactos != null && !contactos.isEmpty())

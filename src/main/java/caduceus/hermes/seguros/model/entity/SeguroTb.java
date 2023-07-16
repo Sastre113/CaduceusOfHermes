@@ -4,11 +4,14 @@
 package caduceus.hermes.seguros.model.entity;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +22,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Segurotb")
+@NamedEntityGraph(
+		name = "seguro-graph",
+		includeAllAttributes = false,
+		attributeNodes = {
+				@NamedAttributeNode(value = "vehiculos", subgraph = "vehiculos-graph"),
+				@NamedAttributeNode(value = "usuarios", subgraph = "usuarios-graph"),
+        },
+        subgraphs = {
+                @NamedSubgraph(name = "usuarios-graph", attributeNodes = {
+                        @NamedAttributeNode("contactos")
+                })
+        }
+)
 public class SeguroTb {
 
 	@Id
@@ -32,9 +48,9 @@ public class SeguroTb {
 	private Date fechaBaja;
 
 	@OneToMany(mappedBy = "seguro")
-	private List<VehiculoTb> vehiculos;
+	private Set<VehiculoTb> vehiculos;
 	@OneToMany(mappedBy = "seguro")
-	private List<UsuarioTb> usuarios;
+	private Set<UsuarioTb> usuarios;
 
 	public int getIdSeguro() {
 		return idSeguro;
@@ -68,19 +84,19 @@ public class SeguroTb {
 		this.fechaBaja = fechaBaja;
 	}
 
-	public List<VehiculoTb> getVehiculos() {
+	public Set<VehiculoTb> getVehiculos() {
 		return vehiculos;
 	}
 
-	public void setVehiculos(List<VehiculoTb> vehiculos) {
+	public void setVehiculos(Set<VehiculoTb> vehiculos) {
 		this.vehiculos = vehiculos;
 	}
 
-	public List<UsuarioTb> getUsuarios() {
+	public Set<UsuarioTb> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<UsuarioTb> usuarios) {
+	public void setUsuarios(Set<UsuarioTb> usuarios) {
 		this.usuarios = usuarios;
 	}
 
