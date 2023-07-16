@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 
 import caduceus.hermes.seguros.model.dto.ContactoDTO;
 import caduceus.hermes.seguros.model.dto.SeguroDTO;
+import caduceus.hermes.seguros.model.dto.TipoContactoDTO;
 import caduceus.hermes.seguros.model.dto.UsuarioDTO;
 import caduceus.hermes.seguros.model.dto.VehiculoDTO;
 import caduceus.hermes.seguros.model.entity.ContactoTb;
 import caduceus.hermes.seguros.model.entity.SeguroTb;
+import caduceus.hermes.seguros.model.entity.TipoContactoTb;
 import caduceus.hermes.seguros.model.entity.UsuarioTb;
 import caduceus.hermes.seguros.model.entity.VehiculoTb;
 import caduceus.hermes.seguros.repository.ISeguroRepository;
@@ -101,8 +103,27 @@ public class SeguroService {
 	private ContactoDTO mapContactoDTO(ContactoTb contactoEntity) {
 		ContactoDTO contactoDTO = new ContactoDTO();
 		contactoDTO.setIdContacto(contactoEntity.getIdContacto());
-		contactoDTO.setNumTelefono(contactoEntity.getNumTelefono());	
+		contactoDTO.setNumTelefono(contactoEntity.getNumTelefono());
+		
+		contactoDTO.setListaTipoContacto(this.mapTipoContacto(contactoEntity.getTipoContactos()));
+		
 		return contactoDTO;
+	}
+
+	private List<TipoContactoDTO> mapTipoContacto(Set<TipoContactoTb> tipoContactos) {
+		List<TipoContactoDTO> listaTipoContactoDTO = new ArrayList<>();
+		
+		if(tipoContactos != null && !tipoContactos.isEmpty())
+			tipoContactos.forEach(tipoContacto -> listaTipoContactoDTO.add(this.mapTipoContactoDTO(tipoContacto)));
+		
+		return listaTipoContactoDTO;
+	}
+
+	private TipoContactoDTO mapTipoContactoDTO(TipoContactoTb tipoContacto) {
+		TipoContactoDTO tipoContactoDTO = new TipoContactoDTO();
+		tipoContactoDTO.setTipoContacto(tipoContacto.getIdTipoContacto());
+		tipoContactoDTO.setDescripcion(tipoContacto.getDescripcion());
+		return tipoContactoDTO;
 	}
 
 }

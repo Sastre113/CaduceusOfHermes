@@ -1,4 +1,4 @@
--- Creación de la tabla Seguro
+-- Creación de la tabla Segurotb
 CREATE TABLE Segurotb (
   id_seguro INT NOT NULL,
   empresa VARCHAR(200),
@@ -6,7 +6,7 @@ CREATE TABLE Segurotb (
   fecha_baja DATE
 );
 
--- Creación de la tabla Vehiculo
+-- Creación de la tabla Vehiculotb
 CREATE TABLE Vehiculotb (
   id_vehiculo INT NOT NULL,
   id_seguro INT,
@@ -14,7 +14,7 @@ CREATE TABLE Vehiculotb (
   color VARCHAR(200)
 );
 
--- Creación de la tabla Usuario
+-- Creación de la tabla Usuariotb
 CREATE TABLE Usuariotb (
   id_usuario INT NOT NULL,
   id_seguro INT,
@@ -23,12 +23,20 @@ CREATE TABLE Usuariotb (
   dni VARCHAR(14)
 );
 
--- Creación de la tabla Usuario
+-- Creación de la tabla Contactotb
 CREATE TABLE Contactotb (
   id_contacto INT NOT NULL,
   id_usuario INT,
   num_telefono INT
 );
+
+-- Creación de la tabla 
+CREATE TABLE TipoContactotb (
+  id_tipo_contacto INT NOT NULL,
+  id_contacto INT,
+  descripcion VARCHAR(200)
+);
+
 
 -- Seguro
 ALTER TABLE Segurotb 
@@ -57,6 +65,14 @@ ADD PRIMARY KEY (id_contacto);
 ALTER TABLE Contactotb
 ADD CONSTRAINT FK_Contacto_Usuario
 FOREIGN KEY (id_usuario) REFERENCES Usuariotb(id_usuario);
+
+-- Contacto
+ALTER TABLE TipoContactotb 
+ADD PRIMARY KEY (id_tipo_contacto);
+
+ALTER TABLE TipoContactotb
+ADD CONSTRAINT FK_TipoContacto_Contacto
+FOREIGN KEY (id_contacto) REFERENCES Contactotb(id_contacto);
 
 -- Inserción de datos en la tabla Segurotb
 INSERT INTO Segurotb (id_seguro, empresa, fecha_alta, fecha_baja)
@@ -93,4 +109,9 @@ VALUES
   (4, 3, 111111111),
   (5, 3, 999999999);
 
-
+INSERT INTO TipoContactotb (id_tipo_contacto, id_contacto, descripcion)
+VALUES
+  (1, 1, 'Teléfono'),
+  (2, 1, 'Movil'),
+  (3, 2, 'Fijo'),
+  (4, 2, 'Satelite');

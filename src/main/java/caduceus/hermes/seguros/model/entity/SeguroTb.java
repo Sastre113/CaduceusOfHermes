@@ -27,11 +27,15 @@ import javax.persistence.Table;
 		includeAllAttributes = false,
 		attributeNodes = {
 				@NamedAttributeNode(value = "vehiculos", subgraph = "vehiculos-graph"),
-				@NamedAttributeNode(value = "usuarios", subgraph = "usuarios-graph"),
+				@NamedAttributeNode(value = "usuarios", subgraph = "usuarios-graph")
         },
         subgraphs = {
                 @NamedSubgraph(name = "usuarios-graph", attributeNodes = {
-                        @NamedAttributeNode("contactos")
+                        @NamedAttributeNode("contactos"),
+                        @NamedAttributeNode(value = "contactos", subgraph = "contactos-graph")      
+                }),
+                @NamedSubgraph(name = "contactos-graph", attributeNodes = {
+                        @NamedAttributeNode("tipoContactos")
                 })
         }
 )

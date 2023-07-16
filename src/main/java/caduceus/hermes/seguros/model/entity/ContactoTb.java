@@ -3,11 +3,14 @@
  */
 package caduceus.hermes.seguros.model.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +31,9 @@ public class ContactoTb {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private UsuarioTb usuario;
+
+	@OneToMany(mappedBy = "contacto")
+	private Set<TipoContactoTb> tipoContactos;
 
 	public Integer getIdContacto() {
 		return idContacto;
@@ -51,5 +57,13 @@ public class ContactoTb {
 
 	public void setUsuario(UsuarioTb usuario) {
 		this.usuario = usuario;
+	}
+
+	public Set<TipoContactoTb> getTipoContactos() {
+		return tipoContactos;
+	}
+
+	public void setTipoContactos(Set<TipoContactoTb> tipoContactos) {
+		this.tipoContactos = tipoContactos;
 	}
 }
