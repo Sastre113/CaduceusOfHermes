@@ -1,3 +1,7 @@
 {
-	"test": "JSON. Esto es el idioma español"
+	"config": "JSON. Esto es el idioma español",
+	"Objeto":{
+		"error1": "Esto es un error nº1",
+		"exito":"Esto es un exito"
+	}
 }

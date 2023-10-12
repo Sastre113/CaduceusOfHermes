@@ -3,6 +3,8 @@
  */
 package caduceus.hermes.seguros.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,26 +13,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import caduceus.hermes.seguros.model.dto.SeguroDTO;
-import caduceus.hermes.seguros.service.SeguroService;
+import caduceus.hermes.seguros.utils.MessageUtil;
 
 /**
  * @author Miguel Á. Sastre <sastre113@gmail.com>
- * @version 16:22:03 - 16/07/2023
+ * @version 21:25:16 - 11/10/2023
  *
  */
 @RestController
-@RequestMapping(value = { "/seguro" })
-public class SeguroController {
+@RequestMapping(value = { "/i18n" })
+public class I18nController {
 
 	@Autowired
-	private SeguroService seguroService;
-	
-	public SeguroController() {
-	}
+	private MessageUtil messageUtil;
 
-	@GetMapping(path = "/{idSeguro}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SeguroDTO> obtenerSeguro(@PathVariable int idSeguro) {
-		return ResponseEntity.ok(this.seguroService.obtenerSeguroPorId(idSeguro));
+	
+	@GetMapping(path = "/mensaje/{key}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> obtenerMensajeJson(@PathVariable String key) throws IOException {
+		return ResponseEntity.ok(messageUtil.getMessage(key));
 	}
 }

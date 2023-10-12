@@ -5,6 +5,8 @@ logging:
         security: DEBUG
         
 spring:
+  web:
+    locale: ca_ES
   cloud:
     loadbalancer:
       cache:
