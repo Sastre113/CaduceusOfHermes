@@ -12,6 +12,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 /**
+ * 
  * @author Miguel Á. Sastre <sastre113@gmail.com>
  * @version 21:46:34 - 12/10/2023
  *
