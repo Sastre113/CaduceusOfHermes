@@ -1,7 +1,7 @@
 /**
  * 
  */
-package caduceus.hermes.seguros.utils;
+package caduceus.hermes.seguros.i18n;
 
 import java.util.Locale;
 
@@ -17,18 +17,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageUtil {
 
-	private final MessageSource messageSource;
+	private static MessageSource messageSource;
 
-	public MessageUtil(MessageSource messageSource) {
-		this.messageSource = messageSource;
+	public static void setMessageSource(MessageSource source) {
+		messageSource = source;
 	}
-	
 
-	public String getMessage(String code) {
+	public static String getMessage(String code) {
 		Locale currentLocale = LocaleContextHolder.getLocale();
 		System.out.println("Locale: " + currentLocale.toString());
-		return this.messageSource.getMessage(code, null, currentLocale);
+		return messageSource.getMessage(code, null, currentLocale);
 	}
-	
-	
+
 }

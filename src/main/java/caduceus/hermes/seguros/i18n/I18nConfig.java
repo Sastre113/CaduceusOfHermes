@@ -1,7 +1,7 @@
 /**
  * 
  */
-package caduceus.hermes.seguros.config;
+package caduceus.hermes.seguros.i18n;
 
 import java.util.Locale;
 
@@ -24,13 +24,17 @@ public class I18nConfig {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:lang/properties/messages");
 		messageSource.setDefaultEncoding("UTF-8");
+		messageSource.setFallbackToSystemLocale(false);
+		messageSource.setDefaultLocale(Locale.forLanguageTag("ca-ES"));
+
+		MessageUtil.setMessageSource(messageSource);	
 		return messageSource;
 	}
 
 	@Bean
     public LocaleResolver localeResolver() {
         AcceptHeaderLocaleResolver resolver = new AcceptHeaderLocaleResolver();
-        resolver.setDefaultLocale(new Locale("ca", "ES")); // Establece el Locale predeterminado si la cabecera no contiene preferencias válidas
+        resolver.setDefaultLocale(Locale.forLanguageTag("ca-ES"));
         return resolver;
     }
 }

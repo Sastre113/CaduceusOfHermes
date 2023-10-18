@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import caduceus.hermes.seguros.utils.MessageUtil;
+import caduceus.hermes.seguros.i18n.MessageUtil;
 
 /**
  * @author Miguel Á. Sastre <sastre113@gmail.com>
@@ -24,12 +24,10 @@ import caduceus.hermes.seguros.utils.MessageUtil;
 @RequestMapping(value = { "/i18n" })
 public class I18nController {
 
-	@Autowired
-	private MessageUtil messageUtil;
-
+	
 	
 	@GetMapping(path = "/mensaje/{key}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> obtenerMensajeJson(@PathVariable String key) throws IOException {
-		return ResponseEntity.ok(messageUtil.getMessage(key));
+		return ResponseEntity.ok(MessageUtil.getMessage(key));
 	}
 }
