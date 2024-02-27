@@ -3,6 +3,7 @@
  */
 package caduceus.hermes.seguros.i18n;
 
+import java.text.MessageFormat;
 import java.util.Locale;
 
 import org.springframework.context.MessageSource;
@@ -23,10 +24,11 @@ public class MessageUtil {
 		messageSource = source;
 	}
 
-	public static String getMessage(String code) {
+	public static String getMessage(String code, String ...args) {
 		Locale currentLocale = LocaleContextHolder.getLocale();
 		System.out.println("Locale: " + currentLocale.toString());
-		return messageSource.getMessage(code, null, currentLocale);
+		String message = messageSource.getMessage(code, null, currentLocale);
+		return MessageFormat.format(message, args);
 	}
 
 }

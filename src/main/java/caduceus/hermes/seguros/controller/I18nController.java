@@ -5,7 +5,6 @@ package caduceus.hermes.seguros.controller;
 
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +27,12 @@ public class I18nController {
 	
 	@GetMapping(path = "/mensaje/{key}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> obtenerMensajeJson(@PathVariable String key) throws IOException {
-		return ResponseEntity.ok(MessageUtil.getMessage(key));
+		
+		String [] args = new String[0];
+		if("test.con.parametros".equals(key)) {
+			args = new String[]{"{1º parametro}", "{2º parametro}", "{3º parametro}"}; 
+		}
+		
+		return ResponseEntity.ok(MessageUtil.getMessage(key, args));
 	}
 }
